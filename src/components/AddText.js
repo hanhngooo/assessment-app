@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useCombobox, useMultipleSelection } from "downshift";
 import Table from "./Table";
 
@@ -8,6 +8,8 @@ import { selectPatterns } from "../store/data/selectors";
 
 export default function AddText() {
   const patterns = useSelector(selectPatterns);
+  const dispatch = useDispatch();
+
   const items = [
     "Close Account",
     "Open Account",
@@ -73,6 +75,20 @@ export default function AddText() {
     },
   });
 
+  // add selected patterns handler, put pattern string into object
+  const handleAddSelectedItems = () => {
+    console.log("send selected patterns", selectedItems);
+    const selectedFullItems = selectedItems.map((item) => {
+      return {
+        id: Date.now(),
+        textPattern: item,
+        channel: "",
+      };
+    });
+    console.log("send selected patterns after add key", selectedFullItems);
+
+    dispatch(addPatterns(selectedFullItems));
+  };
   return (
     <div>
       <p>input: {inputValue}</p>
@@ -92,7 +108,9 @@ export default function AddText() {
         >
           &#8595;
         </button>
-        <button className="form-button">Insert</button>
+        <button className="form-button" onClick={handleAddSelectedItems}>
+          Insert
+        </button>
       </div>
       <ul {...getMenuProps()}>
         {isOpen &&
@@ -118,7 +136,7 @@ export default function AddText() {
             </li>
           ))}
       </ul>
-      <Table patterns={patterns} selectedItems={selectedItems} />
+      <Table patterns={patterns} />
     </div>
   );
 }

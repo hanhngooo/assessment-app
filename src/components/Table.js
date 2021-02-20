@@ -17,8 +17,8 @@ export default function Table({ patterns, selectedItems }) {
         </thead>
         <tbody>
           {patterns &&
-            patterns.map((pattern) => (
-              <tr key={pattern.id}>
+            patterns.map((pattern, index) => (
+              <tr key={index}>
                 <td>{pattern.textPattern}</td>
                 <td>{pattern.channel}</td>
                 <td>

@@ -28,7 +28,11 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_PATTERNS_SUCCESS:
-      return { ...state, patterns: [...action.payload] };
+      const updatedPatterns = state.patterns.concat(action.payload);
+      return {
+        ...state,
+        patterns: updatedPatterns,
+      };
     default:
       return state;
   }
