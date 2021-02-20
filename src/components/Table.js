@@ -1,9 +1,12 @@
 import React from "react";
+import { GoEye } from "react-icons/go";
+import { FaPen } from "react-icons/fa";
+import { FiTrash } from "react-icons/fi";
 
-export default function Table({ dummyTableItems, selectedItems }) {
+export default function Table({ patterns, selectedItems }) {
   return (
     <div>
-      <table classNam="table">
+      <table className="table">
         <thead>
           <tr>
             <th>Text Pattern</th>
@@ -12,7 +15,22 @@ export default function Table({ dummyTableItems, selectedItems }) {
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {patterns &&
+            patterns.map((pattern) => (
+              <tr key={pattern.id}>
+                <td>{pattern.textPattern}</td>
+                <td>{pattern.channel}</td>
+                <td>
+                  <GoEye />
+                </td>
+                <td>
+                  <FaPen />
+                  <FiTrash />
+                </td>
+              </tr>
+            ))}
+        </tbody>
       </table>
     </div>
   );

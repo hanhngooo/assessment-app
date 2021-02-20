@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useCombobox, useMultipleSelection } from "downshift";
 import Table from "./Table";
 
 import { addPatterns } from "../store/data/actions";
+import { selectPatterns } from "../store/data/selectors";
 
 export default function AddText() {
+  const patterns = useSelector(selectPatterns);
   const items = [
     "Close Account",
     "Open Account",
@@ -13,28 +16,6 @@ export default function AddText() {
     "Sue",
     "Terminate",
     "Update Account",
-  ];
-  const dummyTableItems = [
-    {
-      id: "1",
-      textPattern: "Shut Account",
-      channel: "Agent Channels",
-    },
-    {
-      id: "2",
-      textPattern: "Open Account",
-      channel: "Caller Channels",
-    },
-    {
-      id: "3",
-      textPattern: "Closed Cart",
-      channel: "Both Channels",
-    },
-    {
-      id: "4",
-      textPattern: "Update Account",
-      channel: "Caller Channels",
-    },
   ];
   const [inputValue, setInputValue] = useState("");
   const {
@@ -137,7 +118,7 @@ export default function AddText() {
             </li>
           ))}
       </ul>
-      <Table dummyTableItems={dummyTableItems} selectedItems={selectedItems} />
+      <Table patterns={patterns} selectedItems={selectedItems} />
     </div>
   );
 }
