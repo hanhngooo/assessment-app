@@ -10,3 +10,16 @@ export const addPatterns = (patterns) => {
     dispatch(addPatternsSuccess(patterns));
   };
 };
+
+// delete pattern action
+export const DELETE_PATTERN_SUCCESS = "DELETE_PATTERN_SUCCESS";
+const deletePatternSuccess = (pattern) => ({
+  type: DELETE_PATTERN_SUCCESS,
+  payload: pattern,
+});
+
+export const deletePattern = (pattern) => {
+  return (dispatch) => {
+    dispatch(deletePatternSuccess(pattern));
+  };
+};

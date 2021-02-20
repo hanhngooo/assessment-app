@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useCombobox, useMultipleSelection } from "downshift";
 import Table from "./Table";
 
-import { addPatterns } from "../store/data/actions";
+import { addPatterns, deletePattern } from "../store/data/actions";
 import { selectPatterns } from "../store/data/selectors";
 
 export default function AddText() {
@@ -77,17 +77,19 @@ export default function AddText() {
 
   // add selected patterns handler, put pattern string into object
   const handleAddSelectedItems = () => {
-    console.log("send selected patterns", selectedItems);
     const selectedFullItems = selectedItems.map((item) => {
       return {
-        id: Date.now(),
+        id: Math.random(),
         textPattern: item,
         channel: "",
       };
     });
-    console.log("send selected patterns after add key", selectedFullItems);
-
     dispatch(addPatterns(selectedFullItems));
+  };
+
+  // delete a pattern row
+  const handleDeleteItem = (item) => {
+    dispatch(deletePattern(item));
   };
   return (
     <div>
@@ -136,7 +138,7 @@ export default function AddText() {
             </li>
           ))}
       </ul>
-      <Table patterns={patterns} />
+      <Table patterns={patterns} handleDeleteItem={handleDeleteItem} />
     </div>
   );
 }

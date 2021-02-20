@@ -3,7 +3,7 @@ import { GoEye } from "react-icons/go";
 import { FaPen } from "react-icons/fa";
 import { FiTrash } from "react-icons/fi";
 
-export default function Table({ patterns, selectedItems }) {
+export default function Table({ patterns, handleDeleteItem }) {
   return (
     <div>
       <table className="table">
@@ -26,7 +26,9 @@ export default function Table({ patterns, selectedItems }) {
                 </td>
                 <td>
                   <FaPen />
-                  <FiTrash />
+                  <button onClick={() => handleDeleteItem(pattern)}>
+                    <FiTrash />
+                  </button>
                 </td>
               </tr>
             ))}

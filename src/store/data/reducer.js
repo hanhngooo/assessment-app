@@ -1,4 +1,4 @@
-import { ADD_PATTERNS_SUCCESS } from "./actions";
+import { ADD_PATTERNS_SUCCESS, DELETE_PATTERN_SUCCESS } from "./actions";
 
 const initialState = {
   patterns: [
@@ -32,6 +32,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         patterns: updatedPatterns,
+      };
+    case DELETE_PATTERN_SUCCESS:
+      const newPatterns = state.patterns.filter(
+        (pattern) => pattern.id !== action.payload.id
+      );
+      return {
+        ...state,
+        patterns: newPatterns,
       };
     default:
       return state;
