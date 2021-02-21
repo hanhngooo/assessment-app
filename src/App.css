@@ -1,3 +1,48 @@
 .App {
   text-align: center;
 }
+
+.main {
+  margin: 2rem auto;
+}
+input[type="text"]:hover,
+input[type="text"]:focus {
+  border: 0.1rem solid #30b7e0;
+  outline: none;
+}
+input[type="text"] {
+  padding-left: 0.5rem;
+  width: 15rem;
+  height: 2rem;
+  margin-right: 0.1rem;
+  border-radius: 0.1rem;
+  border: 0.1rem solid lightgray;
+}
+ul {
+  width: 15rem;
+  margin: auto;
+  list-style-type: none;
+}
+li {
+  cursor: pointer;
+  padding: 0.5rem;
+}
+table {
+  margin: 4rem auto;
+}
+
+button {
+  display: inline-block;
+  width: 5rem;
+  height: 2.1rem;
+  padding: 0.2rem;
+  margin-left: 0.5rem;
+  color: white;
+  background-color: #5bc0de;
+  border-radius: 0.1rem;
+  border: 0.1rem solid #30b7e0;
+  cursor: pointer;
+}
+button[type="reset"] {
+  width: 2rem;
+}

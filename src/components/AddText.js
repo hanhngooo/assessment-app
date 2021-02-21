@@ -25,6 +25,7 @@ export default function AddText() {
     addSelectedItem,
     removeSelectedItem,
     selectedItems,
+    reset,
   } = useMultipleSelection();
   const getFilteredItems = () =>
     items.filter((item) =>
@@ -40,7 +41,6 @@ export default function AddText() {
     openMenu,
   } = useCombobox({
     inputValue,
-    defaultHighlightedIndex: 0, // after selection, highlight the first item.
     selectedItem: null,
     items: getFilteredItems(),
     stateReducer: (state, actionAndChanges) => {
@@ -62,7 +62,6 @@ export default function AddText() {
           break;
         case useCombobox.stateChangeTypes.InputKeyDownEnter:
         case useCombobox.stateChangeTypes.ItemClick:
-        case useCombobox.stateChangeTypes.InputBlur:
           if (!selectedItems.includes(selectedItem)) {
             addSelectedItem(selectedItem);
           } else {
@@ -103,13 +102,19 @@ export default function AddText() {
     //save edit
     dispatch(editPattern(selectedChannel, index));
   };
+
+  // handle select channel change
   const handleChange = (e, index) => {
     const { value } = e.target;
     setSelectedChannel(value);
   };
 
+  const placeholder =
+    selectedItems.length > 0
+      ? `${selectedItems.length} patterns selected`
+      : "Add Text Pattern...";
   return (
-    <div>
+    <div className="main">
       <div {...getComboboxProps()}>
         <input
           {...getInputProps(
@@ -124,11 +129,22 @@ export default function AddText() {
               onChange: (e) => setInputValue(e.target.value),
             }
           )}
-          placeholder="Add Text Pattern..."
+          type="text"
+          placeholder={placeholder}
         />
-        <button className="form-button" onClick={handleAddSelectedItems}>
+        <button type="submit" onClick={handleAddSelectedItems}>
           Insert
         </button>
+        {selectedItems.length > 0 ? (
+          <button
+            type="reset"
+            onClick={() => {
+              reset();
+            }}
+          >
+            X
+          </button>
+        ) : null}
       </div>
       <ul {...getMenuProps()}>
         {isOpen &&
@@ -147,8 +163,6 @@ export default function AddText() {
                 {...getItemProps({
                   item,
                   index,
-                  isActive: highlightedIndex === index,
-                  isSelected: selectedItems.includes(item),
                 })}
               >
                 {item}

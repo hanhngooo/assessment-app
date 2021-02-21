@@ -56,32 +56,30 @@ export default function Table({
   selectedChannel,
 }) {
   return (
-    <div>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Text Pattern</th>
-            <th>Channel</th>
-            <th>View Examples</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {patterns &&
-            patterns.map((pattern, index) =>
-              row(
-                pattern,
-                index,
-                handleDeleteItem,
-                handleEdit,
-                editIndex,
-                handleStopEdit,
-                handleChange,
-                selectedChannel
-              )
-            )}
-        </tbody>
-      </table>
-    </div>
+    <table className="table">
+      <thead>
+        <tr>
+          <th>Text Pattern</th>
+          <th>Channel</th>
+          <th>View Examples</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {patterns &&
+          patterns.map((pattern, index) =>
+            row(
+              pattern,
+              index,
+              handleDeleteItem,
+              handleEdit,
+              editIndex,
+              handleStopEdit,
+              handleChange,
+              selectedChannel
+            )
+          )}
+      </tbody>
+    </table>
   );
 }
