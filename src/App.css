@@ -71,3 +71,11 @@ button:hover {
 .icon {
   cursor: pointer;
 }
+
+.strong {
+  color: green;
+}
+
+.weak {
+  color: red;
+}

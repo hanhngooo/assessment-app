@@ -118,6 +118,7 @@ export default function AddText() {
       : "Add Text Pattern...";
   return (
     <div className="main">
+      <h3>Question 1: Add Text</h3>
       <div {...getComboboxProps()}>
         <input
           className="pattern-input"
