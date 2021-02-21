@@ -24,8 +24,10 @@ const row = (
             <option value="Caller Channels">Caller Channels</option>
             <option value="Both Channels">Both Channels</option>
           </select>
-        ) : (
+        ) : pattern.channel ? (
           pattern.channel
+        ) : (
+          <div>Click edit to add</div>
         )}
       </td>
       <td>

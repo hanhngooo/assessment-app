@@ -32,12 +32,12 @@ export default function AddText() {
     );
   const {
     isOpen,
-    getToggleButtonProps,
     getMenuProps,
     getInputProps,
     getComboboxProps,
     highlightedIndex,
     getItemProps,
+    openMenu,
   } = useCombobox({
     inputValue,
     defaultHighlightedIndex: 0, // after selection, highlight the first item.
@@ -107,49 +107,54 @@ export default function AddText() {
     const { value } = e.target;
     setSelectedChannel(value);
   };
+
   return (
     <div>
       <div {...getComboboxProps()}>
         <input
-          {...getInputProps(getDropdownProps(), {
-            onChange: (e) => setInputValue(e.target.value),
-          })}
+          {...getInputProps(
+            getDropdownProps({
+              onFocus: () => {
+                if (!isOpen) {
+                  openMenu();
+                }
+              },
+            }),
+            {
+              onChange: (e) => setInputValue(e.target.value),
+            }
+          )}
           placeholder="Add Text Pattern..."
         />
-        <button
-          type="button"
-          {...getToggleButtonProps()}
-          aria-label="toggle menu"
-        >
-          &#8595;
-        </button>
         <button className="form-button" onClick={handleAddSelectedItems}>
           Insert
         </button>
       </div>
       <ul {...getMenuProps()}>
         {isOpen &&
-          getFilteredItems(items).map((item, index) => (
-            <li
-              style={
-                highlightedIndex === index ? { backgroundColor: "#5bc0de" } : {}
-              }
-              key={`${item}${index}`}
-              {...getItemProps({
-                item,
-                index,
-              })}
-            >
-              <input
-                type="checkbox"
-                checked={selectedItems.includes(item)}
-                value={item}
-                onChange={() => null}
-              />
-              <span />
-              {item}
-            </li>
-          ))}
+          getFilteredItems(items).map((item, index) => {
+            return (
+              <li
+                style={
+                  (highlightedIndex === index
+                    ? { backgroundColor: "#5bc0de" }
+                    : {},
+                  selectedItems.includes(item)
+                    ? { backgroundColor: "#5bc0de" }
+                    : { backgroundColor: "white" })
+                }
+                key={`${item}${index}`}
+                {...getItemProps({
+                  item,
+                  index,
+                  isActive: highlightedIndex === index,
+                  isSelected: selectedItems.includes(item),
+                })}
+              >
+                {item}
+              </li>
+            );
+          })}
       </ul>
       <Table
         patterns={patterns}
