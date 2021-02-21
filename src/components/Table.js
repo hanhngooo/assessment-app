@@ -31,16 +31,29 @@ const row = (
         )}
       </td>
       <td>
-        <GoEye />
+        <GoEye color="#5bc0de" className="icon" />
       </td>
       <td>
         {currentEditRow ? (
-          <FiCheck onClick={() => handleStopEdit(index)} />
+          <FiCheck
+            color="green"
+            className="icon"
+            onClick={() => handleStopEdit(index)}
+          />
         ) : (
-          <FaPen onClick={() => handleEdit(index)} />
+          <FaPen
+            color="#5bc0de"
+            className="icon"
+            onClick={() => handleEdit(index)}
+          />
         )}
 
-        <FiTrash onClick={() => handleDeleteItem(pattern.id)} />
+        <FiTrash
+          color="red"
+          style={{ marginLeft: "0.8rem" }}
+          className="icon"
+          onClick={() => handleDeleteItem(pattern.id)}
+        />
       </td>
     </tr>
   );

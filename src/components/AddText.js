@@ -39,6 +39,7 @@ export default function AddText() {
     highlightedIndex,
     getItemProps,
     openMenu,
+    closeMenu,
   } = useCombobox({
     inputValue,
     selectedItem: null,
@@ -53,6 +54,7 @@ export default function AddText() {
             isOpen: true, // keep the menu open after selection.
           };
       }
+
       return changes;
     },
     onStateChange: ({ inputValue, type, selectedItem }) => {
@@ -67,6 +69,7 @@ export default function AddText() {
           } else {
             removeSelectedItem(selectedItem);
           }
+
           break;
         default:
           break;
@@ -117,6 +120,7 @@ export default function AddText() {
     <div className="main">
       <div {...getComboboxProps()}>
         <input
+          className="pattern-input"
           {...getInputProps(
             getDropdownProps({
               onFocus: () => {
@@ -145,31 +149,29 @@ export default function AddText() {
             X
           </button>
         ) : null}
+        <ul {...getMenuProps()}>
+          {isOpen &&
+            getFilteredItems(items).map((item, index) => {
+              return (
+                <li
+                  style={
+                    selectedItems.includes(item)
+                      ? { backgroundColor: "#5bc0de" }
+                      : { backgroundColor: "white" }
+                  }
+                  key={`${item}${index}`}
+                  {...getItemProps({
+                    item,
+                    index,
+                  })}
+                >
+                  {item}
+                </li>
+              );
+            })}
+        </ul>
       </div>
-      <ul {...getMenuProps()}>
-        {isOpen &&
-          getFilteredItems(items).map((item, index) => {
-            return (
-              <li
-                style={
-                  (highlightedIndex === index
-                    ? { backgroundColor: "#5bc0de" }
-                    : {},
-                  selectedItems.includes(item)
-                    ? { backgroundColor: "#5bc0de" }
-                    : { backgroundColor: "white" })
-                }
-                key={`${item}${index}`}
-                {...getItemProps({
-                  item,
-                  index,
-                })}
-              >
-                {item}
-              </li>
-            );
-          })}
-      </ul>
+
       <Table
         patterns={patterns}
         handleDeleteItem={handleDeleteItem}

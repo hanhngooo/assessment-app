@@ -1,37 +1,55 @@
 .App {
   text-align: center;
+  margin: 0 auto;
 }
 
-.main {
-  margin: 2rem auto;
-}
-input[type="text"]:hover,
-input[type="text"]:focus {
+.pattern-input:hover,
+.pattern-input:focus {
   border: 0.1rem solid #30b7e0;
   outline: none;
 }
-input[type="text"] {
+.pattern-input {
   padding-left: 0.5rem;
   width: 15rem;
   height: 2rem;
   margin-right: 0.1rem;
   border-radius: 0.1rem;
   border: 0.1rem solid lightgray;
+  font-family: inherit;
 }
 ul {
-  width: 15rem;
-  margin: auto;
-  list-style-type: none;
+  width: 20rem;
+  text-align: left;
+  margin: 0 auto;
+  padding-inline-start: 0;
 }
 li {
+  list-style-type: none;
   cursor: pointer;
   padding: 0.5rem;
+  border: 0.05rem solid lightgray;
 }
+li:hover {
+  border: 0.05rem solid #5bc0de;
+}
+
 table {
   margin: 4rem auto;
+  width: 50%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: rgb(230, 230, 230);
+}
+td,
+th {
+  border: 0.1rem solid rgb(185, 185, 185);
+  padding: 0.5rem;
 }
 
 button {
+  font-family: inherit;
   display: inline-block;
   width: 5rem;
   height: 2.1rem;
@@ -42,7 +60,14 @@ button {
   border-radius: 0.1rem;
   border: 0.1rem solid #30b7e0;
   cursor: pointer;
+  outline: none;
 }
 button[type="reset"] {
   width: 2rem;
+}
+button:hover {
+  background-color: #53b2cf;
+}
+.icon {
+  cursor: pointer;
 }
