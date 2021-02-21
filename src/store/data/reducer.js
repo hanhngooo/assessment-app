@@ -1,4 +1,8 @@
-import { ADD_PATTERNS_SUCCESS, DELETE_PATTERN_SUCCESS } from "./actions";
+import {
+  ADD_PATTERNS_SUCCESS,
+  DELETE_PATTERN_SUCCESS,
+  EDIT_CHANNEL_SUCCESS,
+} from "./actions";
 
 const initialState = {
   patterns: [
@@ -28,19 +32,30 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_PATTERNS_SUCCESS:
-      const updatedPatterns = state.patterns.concat(action.payload);
+      const addedPatterns = state.patterns.concat(action.payload);
       return {
         ...state,
-        patterns: updatedPatterns,
+        patterns: addedPatterns,
       };
     case DELETE_PATTERN_SUCCESS:
       const newPatterns = state.patterns.filter(
-        (pattern) => pattern.id !== action.payload.id
+        (pattern) => pattern.id !== action.payload
       );
       return {
         ...state,
         patterns: newPatterns,
       };
+    case EDIT_CHANNEL_SUCCESS:
+      const editedPatterns = state.patterns.map((pattern, i) =>
+        i === action.payload.index
+          ? { ...pattern, channel: action.payload.channelValue }
+          : pattern
+      );
+      return {
+        ...state,
+        patterns: editedPatterns,
+      };
+
     default:
       return state;
   }

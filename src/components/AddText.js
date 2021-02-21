@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useCombobox, useMultipleSelection } from "downshift";
 import Table from "./Table";
 
-import { addPatterns, deletePattern } from "../store/data/actions";
+import { addPatterns, deletePattern, editPattern } from "../store/data/actions";
 import { selectPatterns } from "../store/data/selectors";
 
 export default function AddText() {
@@ -91,11 +91,24 @@ export default function AddText() {
   const handleDeleteItem = (item) => {
     dispatch(deletePattern(item));
   };
+  // set state for editIndex
+  const [editIndex, setEditIndex] = useState(-1);
+  const [selectedChannel, setSelectedChannel] = useState("");
+  const handleEdit = (index) => {
+    setEditIndex(index);
+  };
+
+  const handleStopEdit = (index) => {
+    setEditIndex(-1);
+    //save edit
+    dispatch(editPattern(selectedChannel, index));
+  };
+  const handleChange = (e, index) => {
+    const { value } = e.target;
+    setSelectedChannel(value);
+  };
   return (
     <div>
-      <p>input: {inputValue}</p>
-      <p>selected: {selectedItems}</p>
-
       <div {...getComboboxProps()}>
         <input
           {...getInputProps(getDropdownProps(), {
@@ -119,7 +132,7 @@ export default function AddText() {
           getFilteredItems(items).map((item, index) => (
             <li
               style={
-                highlightedIndex === index ? { backgroundColor: "#bde4ff" } : {}
+                highlightedIndex === index ? { backgroundColor: "#5bc0de" } : {}
               }
               key={`${item}${index}`}
               {...getItemProps({
@@ -138,7 +151,15 @@ export default function AddText() {
             </li>
           ))}
       </ul>
-      <Table patterns={patterns} handleDeleteItem={handleDeleteItem} />
+      <Table
+        patterns={patterns}
+        handleDeleteItem={handleDeleteItem}
+        handleEdit={handleEdit}
+        editIndex={editIndex}
+        handleStopEdit={handleStopEdit}
+        handleChange={handleChange}
+        selectedChannel={selectedChannel}
+      />
     </div>
   );
 }
