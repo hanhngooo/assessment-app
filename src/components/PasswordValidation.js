@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 export default function PasswordValidation() {
-  const [inputValue, setInputValue] = useState("");
   const rules = [
     { id: 1, text: "The length is at least 8." },
     { id: 2, text: "It contains at least one digit." },
@@ -13,6 +12,8 @@ export default function PasswordValidation() {
         "It contains at least one special character. The special characters are: !@#$%^&*()-+",
     },
   ];
+
+  const [inputValue, setInputValue] = useState("");
   const [atleast8, setAtLeast8] = useState(false);
   const [digit, setDigit] = useState(false);
   const [lowerCase, setlowerCase] = useState(false);

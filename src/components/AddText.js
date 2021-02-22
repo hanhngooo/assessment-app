@@ -7,6 +7,10 @@ import { addPatterns, deletePattern, editPattern } from "../store/data/actions";
 import { selectPatterns } from "../store/data/selectors";
 
 export default function AddText() {
+  // set state for editIndex
+  const [editIndex, setEditIndex] = useState(-1);
+  const [selectedChannel, setSelectedChannel] = useState("");
+
   const patterns = useSelector(selectPatterns);
   const dispatch = useDispatch();
 
@@ -39,7 +43,6 @@ export default function AddText() {
     highlightedIndex,
     getItemProps,
     openMenu,
-    closeMenu,
   } = useCombobox({
     inputValue,
     selectedItem: null,
@@ -93,9 +96,7 @@ export default function AddText() {
   const handleDeleteItem = (item) => {
     dispatch(deletePattern(item));
   };
-  // set state for editIndex
-  const [editIndex, setEditIndex] = useState(-1);
-  const [selectedChannel, setSelectedChannel] = useState("");
+
   const handleEdit = (index) => {
     setEditIndex(index);
   };
