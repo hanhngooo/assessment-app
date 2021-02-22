@@ -119,60 +119,61 @@ export default function AddText() {
   return (
     <div className="main">
       <h3>Question 1: Add Text</h3>
-      <div {...getComboboxProps()}>
-        <input
-          className="pattern-input"
-          {...getInputProps(
-            getDropdownProps({
-              onFocus: () => {
-                if (!isOpen) {
-                  openMenu();
-                }
-              },
-            }),
-            {
-              onChange: (e) => setInputValue(e.target.value),
-            }
-          )}
-          type="text"
-          placeholder={placeholder}
-        />
-        <button type="submit" onClick={handleAddSelectedItems}>
-          Insert
-        </button>
-        {selectedItems.length > 0 ? (
-          <button
-            type="reset"
-            onClick={() => {
-              reset();
-            }}
-          >
-            X
-          </button>
-        ) : null}
-        <ul {...getMenuProps()}>
-          {isOpen &&
-            getFilteredItems(items).map((item, index) => {
-              return (
-                <li
-                  style={
-                    selectedItems.includes(item)
-                      ? { backgroundColor: "#5bc0de" }
-                      : { backgroundColor: "white" }
+      <div className="main-form_wrapper">
+        <div {...getComboboxProps()} className="main-form">
+          <input
+            className="pattern-input"
+            {...getInputProps(
+              getDropdownProps({
+                onFocus: () => {
+                  if (!isOpen) {
+                    openMenu();
                   }
-                  key={`${item}${index}`}
-                  {...getItemProps({
-                    item,
-                    index,
-                  })}
-                >
-                  {item}
-                </li>
-              );
-            })}
-        </ul>
+                },
+              }),
+              {
+                onChange: (e) => setInputValue(e.target.value),
+              }
+            )}
+            type="text"
+            placeholder={placeholder}
+          />
+          <button type="submit" onClick={handleAddSelectedItems}>
+            Insert
+          </button>
+          {selectedItems.length > 0 ? (
+            <button
+              type="reset"
+              onClick={() => {
+                reset();
+              }}
+            >
+              X
+            </button>
+          ) : null}
+          <ul className="items" {...getMenuProps()}>
+            {isOpen &&
+              getFilteredItems(items).map((item, index) => {
+                return (
+                  <li
+                    style={
+                      selectedItems.includes(item)
+                        ? { backgroundColor: "#5bc0de" }
+                        : { backgroundColor: "white" }
+                    }
+                    key={`${item}${index}`}
+                    {...getItemProps({
+                      item,
+                      index,
+                    })}
+                  >
+                    {item}
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
       </div>
-
       <Table
         patterns={patterns}
         handleDeleteItem={handleDeleteItem}

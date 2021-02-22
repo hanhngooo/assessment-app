@@ -31,7 +31,7 @@ const row = (
         )}
       </td>
       <td>
-        <GoEye color="#5bc0de" className="icon" />
+        <GoEye size="22px" color="#5bc0de" className="icon" />
       </td>
       <td>
         {currentEditRow ? (
@@ -49,6 +49,7 @@ const row = (
         )}
 
         <FiTrash
+          size="18px"
           color="red"
           style={{ marginLeft: "0.8rem" }}
           className="icon"

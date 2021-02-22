@@ -1,6 +1,31 @@
 .App {
+  max-width: 768px;
+  margin: 2rem auto;
   text-align: center;
-  margin: 0 auto;
+  font-size: 90%;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main {
+  margin-top: 2rem;
+}
+
+.main-form_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pattern-input {
+  padding: 0.5rem 0.75rem;
+  width: 200px;
+  margin-right: 0.1rem;
+  border-radius: 0.1rem;
+  border: 0.1rem solid lightgray;
+  font-family: inherit;
 }
 
 .pattern-input:hover,
@@ -8,35 +33,27 @@
   border: 0.1rem solid #30b7e0;
   outline: none;
 }
-.pattern-input {
-  padding-left: 0.5rem;
-  width: 15rem;
-  height: 2rem;
-  margin-right: 0.1rem;
-  border-radius: 0.1rem;
-  border: 0.1rem solid lightgray;
-  font-family: inherit;
-}
-ul {
-  width: 20rem;
+
+.items {
+  margin: 0;
+  padding: 0;
   text-align: left;
-  margin: 0 auto;
-  padding-inline-start: 0;
 }
-li {
+.items li {
+  padding: 0.5rem 0.75rem;
+  width: 200px;
   list-style-type: none;
   cursor: pointer;
-  padding: 0.5rem;
   border: 0.05rem solid lightgray;
 }
-li:hover {
+.items li:hover {
   border: 0.05rem solid #5bc0de;
 }
 
 table {
   margin: 4rem auto;
-  width: 50%;
   border-collapse: collapse;
+  width: 700px;
 }
 
 th {
@@ -45,15 +62,12 @@ th {
 td,
 th {
   border: 0.1rem solid rgb(185, 185, 185);
-  padding: 0.5rem;
+  padding: 0.4rem 0.75rem;
 }
 
 button {
   font-family: inherit;
-  display: inline-block;
-  width: 5rem;
-  height: 2.1rem;
-  padding: 0.2rem;
+  padding: 0.5rem 0.75rem;
   margin-left: 0.5rem;
   color: white;
   background-color: #5bc0de;
@@ -63,7 +77,7 @@ button {
   outline: none;
 }
 button[type="reset"] {
-  width: 2rem;
+  width: 2.3rem;
 }
 button:hover {
   background-color: #53b2cf;
