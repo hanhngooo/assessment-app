@@ -58,13 +58,17 @@ table {
 
 th {
   background-color: rgb(230, 230, 230);
+  padding: 0.7rem 0.75rem;
+  border: 0.1rem solid rgb(185, 185, 185);
 }
-td,
-th {
+
+td {
   border: 0.1rem solid rgb(185, 185, 185);
   padding: 0.4rem 0.75rem;
 }
-
+tr:hover {
+  background-color: #eef2ff;
+}
 button {
   font-family: inherit;
   padding: 0.5rem 0.75rem;

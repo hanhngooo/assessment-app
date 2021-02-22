@@ -1,6 +1,6 @@
 # Assessment Assignment
 
-Deployed App here: []
+Deployed App here: https://vigorous-almeida-25dbd6.netlify.app/
 
 ## Techs used
 
